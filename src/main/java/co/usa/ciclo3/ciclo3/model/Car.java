@@ -19,7 +19,7 @@ public class Car implements Serializable {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "idGama")
+    @JoinColumn(name = "gamaId")
     @JsonIgnoreProperties("cars")
     private Gama gama;
 

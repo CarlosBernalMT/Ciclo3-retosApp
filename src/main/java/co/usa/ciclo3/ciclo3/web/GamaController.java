@@ -25,8 +25,8 @@ public class GamaController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Gama> getGama(@PathVariable("id") int idGama){
-        return gamaService.getGama(idGama);
+    public Optional<Gama> getGama(@PathVariable("id") int id){
+        return gamaService.getGama(id);
     }
 
     @PostMapping("/save")
@@ -43,7 +43,7 @@ public class GamaController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("id") int idGama){
-        return gamaService.deleteGama(idGama);
+    public boolean delete(@PathVariable("id") int id){
+        return gamaService.deleteGama(id);
     }
 }
