@@ -22,14 +22,26 @@ public class CarController {
         return carService.getAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{idCar}")
     public Optional<Car> getCar(@PathVariable("id") int id){
         return carService.getCar(id);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Car save(@RequestBody Car c){
-        return carService.save(c);
+    public Car save(@RequestBody Car car){
+        return carService.save(car);
+    }
+
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Car update(@RequestBody Car car){
+        return carService.update(car);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean delete(@PathVariable("id") int id){
+        return carService.deleteCar(id);
     }
 }

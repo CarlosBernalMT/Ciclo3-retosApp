@@ -1,8 +1,11 @@
 package co.usa.ciclo3.ciclo3.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "client")
@@ -10,26 +13,26 @@ public class Client implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String name;
+    private Integer idClient;
     private String email;
     private String password;
+    private String name;
     private Integer age;
 
-    public Integer getId() {
-        return id;
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "client")
+    @JsonIgnoreProperties("client")
+    public List<Message> Messages;
+
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "client")
+    @JsonIgnoreProperties("client")
+    public List<Reservation> reservations;
+
+    public Integer getIdClient() {
+        return idClient;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setIdClient(Integer idClient) {
+        this.idClient = idClient;
     }
 
     public String getEmail() {
@@ -48,11 +51,35 @@ public class Client implements Serializable {
         this.password = password;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Integer getAge() {
         return age;
     }
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public List<Message> getMessages() {
+        return Messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        Messages = messages;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
     }
 }

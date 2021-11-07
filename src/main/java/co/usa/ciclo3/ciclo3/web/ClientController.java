@@ -23,13 +23,25 @@ public class ClientController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Client> getClient(@PathVariable("id") int id){
-        return  clientService.getClient(id);
+    public Optional<Client> getClient(@PathVariable("id") int idClient){
+        return  clientService.getClient(idClient);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Client save(@RequestBody Client c){
-        return clientService.save(c);
+    public Client save(@RequestBody Client client){
+        return clientService.save(client);
+    }
+
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Client update(@RequestBody Client client){
+        return clientService.update(client);
+    }
+
+    @DeleteMapping("/{idClient}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean delete(@PathVariable("idClient") int idClient){
+        return clientService.deleteClient(idClient);
     }
 }

@@ -1,6 +1,6 @@
 package co.usa.ciclo3.ciclo3.service;
 
-import co.usa.ciclo3.ciclo3.model.Car;
+
 import co.usa.ciclo3.ciclo3.model.Gama;
 import co.usa.ciclo3.ciclo3.repository.GamaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,15 +24,43 @@ public class GamaService {
     }
 
     public Gama save(Gama g){
-        if (g.getId()==null){
+        if (g.getIdGama()==null){
             return gamaRepository.save(g);
         }else{
-            Optional<Gama> gaux = gamaRepository.getGama(g.getId());
+            Optional<Gama> gaux = gamaRepository.getGama(g.getIdGama());
             if (gaux.isEmpty()){
                 return gamaRepository.save(g);
             }else{
                 return g;
             }
         }
+    }
+
+    public Gama update(Gama gama){
+        if (gama.getIdGama() != null){
+            Optional<Gama> g = gamaRepository.getGama(gama.getIdGama());
+            if (!g.isEmpty()){
+                if (gama.getDescription() != null){
+                    g.get().setDescription(gama.getDescription());
+                }
+                if (gama.getName() != null){
+                    g.get().setName(gama.getName());
+                }
+                gamaRepository.save(g.get());
+                return g.get();
+            }else{
+                return gama;
+            }
+        }else{
+            return gama;
+        }
+    }
+
+    public boolean deleteGama(int id){
+        Boolean aBoolean = getGama(id).map(gama -> {
+            gamaRepository.delete(gama);
+            return true;
+        }).orElse(false);
+        return aBoolean;
     }
 }

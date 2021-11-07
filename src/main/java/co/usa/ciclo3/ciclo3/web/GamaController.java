@@ -20,7 +20,7 @@ public class GamaController {
     private GamaService gamaService;
 
     @GetMapping("/all")
-    public List<Gama> getGamas(){
+    public List<Gama> getGama(){
         return gamaService.getAll();
     }
 
@@ -31,7 +31,19 @@ public class GamaController {
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Gama save(@RequestBody Gama g){
-        return gamaService.save(g);
+    public Gama save(@RequestBody Gama gama){
+        return gamaService.save(gama);
+    }
+
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Gama update(@RequestBody Gama gama){
+        return gamaService.update(gama);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean delete(@PathVariable("id") int id){
+        return gamaService.deleteGama(id);
     }
 }

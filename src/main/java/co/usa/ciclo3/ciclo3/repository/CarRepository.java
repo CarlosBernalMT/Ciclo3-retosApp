@@ -22,7 +22,11 @@ public class CarRepository {
         return carCrudRepository.findById(id);
     }
 
-    public Car save(Car c){
-        return carCrudRepository.save(c);
+    public Car save(Car car){
+        return carCrudRepository.save(car);
+    }
+
+    public void delete(Car car){
+        carCrudRepository.delete(car);
     }
 }

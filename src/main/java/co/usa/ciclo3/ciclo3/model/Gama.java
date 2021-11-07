@@ -7,12 +7,12 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "Gama")
+@Table(name = "gama")
 public class Gama implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idGama;
     private String name;
     private String description;
 
@@ -20,12 +20,12 @@ public class Gama implements Serializable {
     @JsonIgnoreProperties("gama")
     public List<Car> cars;
 
-    public Integer getId() {
-        return id;
+    public Integer getIdGama() {
+        return idGama;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdGama(Integer idGama) {
+        this.idGama = idGama;
     }
 
     public String getName() {

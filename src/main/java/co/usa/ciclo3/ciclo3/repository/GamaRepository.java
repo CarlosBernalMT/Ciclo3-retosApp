@@ -22,7 +22,11 @@ public class GamaRepository {
         return gamaCrudRepository.findById(id);
     }
 
-    public Gama save(Gama g){
-        return gamaCrudRepository.save(g);
+    public Gama save(Gama gama){
+        return gamaCrudRepository.save(gama);
+    }
+
+    public void delete(Gama gama){
+        gamaCrudRepository.delete(gama);
     }
 }
